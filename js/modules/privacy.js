@@ -99,11 +99,11 @@ exports.redactSensitivePaths = exports._redactPath(APP_ROOT_PATH);
 
 //      redactAll :: String -> String
 exports.redactAll = compose(
-  exports.redactSensitivePaths,
-  exports.redactGroupIds,
-  exports.redactSessionID,
-  exports.redactSnodeIP,
-  exports.redactServerUrl
+  // exports.redactSensitivePaths,
+  // exports.redactGroupIds,
+  // exports.redactSessionID,
+  // exports.redactSnodeIP,
+  // exports.redactServerUrl
 );
 
 const removeNewlines = text => text.replace(/\r?\n|\r/g, '');

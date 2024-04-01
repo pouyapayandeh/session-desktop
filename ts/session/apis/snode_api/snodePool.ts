@@ -18,7 +18,7 @@ const minSwarmSnodeCount = 3;
  * If we get less than minSnodePoolCount we consider that we need to fetch the new snode pool from a seed node
  * and not from those snodes.
  */
-export const minSnodePoolCount = 12;
+export const minSnodePoolCount = 5;
 
 /**
  * If we get less than this amount of snodes (24), lets try to get an updated list from those while we can
@@ -31,7 +31,7 @@ export const minSnodePoolCountBeforeRefreshFromSnodes = minSnodePoolCount * 2;
  *
  * Too many nodes are not shared for this call to be trustworthy
  */
-export const requiredSnodesForAgreement = 24;
+export const requiredSnodesForAgreement = 10;
 
 let randomSnodePool: Array<Data.Snode> = [];
 

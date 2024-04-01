@@ -277,13 +277,13 @@ async function internalUpdateGuardNodes(updatedGuardNodes: Array<Data.Snode>) {
 }
 
 export async function TEST_testGuardNode(snode: Data.Snode) {
-  window?.log?.info(`Testing a candidate guard node ${ed25519Str(snode.pubkey_ed25519)}`);
+  window?.log?.info(`Testing a candidate guard node ${snode.pubkey_ed25519}`);
 
   // Send a post request and make sure it is OK
   const endpoint = '/storage_rpc/v1';
 
   const url = `https://${snode.ip}:${snode.port}${endpoint}`;
-
+  window?.log?.info(`guard node URL ${url}`);
   const ourPK = UserUtils.getOurPubKeyStrFromCache();
   const pubKey = getStoragePubKey(ourPK); // truncate if testnet
 
@@ -316,7 +316,9 @@ export async function TEST_testGuardNode(snode: Data.Snode) {
     window?.log?.info('insecureNodeFetch => plaintext for testGuardNode');
 
     response = await insecureNodeFetch(url, fetchOptions);
+    window?.log?.info('!!!!!!Gaurd Node response');
   } catch (e) {
+    window?.log?.info('!!!!!!Gaurd Node Error',e);
     if (e.type === 'request-timeout') {
       window?.log?.warn('test timeout for node,', ed25519Str(snode.pubkey_ed25519));
     }
@@ -331,7 +333,7 @@ export async function TEST_testGuardNode(snode: Data.Snode) {
     await response.text();
     window?.log?.info('Node failed the guard test:', snode);
   }
-
+  
   return response.ok;
 }
 

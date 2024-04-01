@@ -612,7 +612,7 @@ function updateToSchemaVersion7(currentVersion, db) {
     return;
   }
   console.log('updateToSchemaVersion7: starting...');
-
+ 
   db.transaction(() => {
     db.exec(`
       -- SQLite has been coercing our STRINGs into numbers, so we force it with TEXT
@@ -625,9 +625,11 @@ function updateToSchemaVersion7(currentVersion, db) {
         number TEXT,
         json TEXT
       );
+
       CREATE INDEX sessions_number ON sessions (
         number
       ) WHERE number IS NOT NULL;
+      
       INSERT INTO sessions(id, number, json)
     SELECT "+" || id, number, json FROM sessions_old;
       DROP TABLE sessions_old;
@@ -1209,8 +1211,8 @@ function updateToLokiSchemaVersion15(currentVersion, db) {
   db.transaction(() => {
     db.exec(`
       DROP TABLE pairingAuthorisations;
-      DROP TRIGGER messages_on_delete;
-      DROP TRIGGER messages_on_update;
+      DROP TRIGGER IF EXISTS messages_on_delete;
+      DROP TRIGGER IF EXISTS messages_on_update;
     `);
 
     writeLokiSchemaVersion(targetVersion, db);

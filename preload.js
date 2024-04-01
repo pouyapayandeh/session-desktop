@@ -211,14 +211,15 @@ window.ReactDOM = require('react-dom');
 window.clipboard = clipboard;
 
 window.getSeedNodeList = () => [
+  // {
+  //   url: 'https://storage.seed1.loki.network:4433/',
+  // },
+  // {
+  //   url: 'https://storage.seed3.loki.network:4433/',
+  // },
   {
-    url: 'https://storage.seed1.loki.network:4433/',
-  },
-  {
-    url: 'https://storage.seed3.loki.network:4433/',
-  },
-  {
-    url: 'https://public.loki.foundation:4433/',
+    url: 'http://5.75.171.41:1000/',
+    url: 'http://116.203.41.114:1001/',
   },
 ];
 
