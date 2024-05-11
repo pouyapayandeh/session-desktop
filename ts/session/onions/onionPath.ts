@@ -471,8 +471,8 @@ async function buildNewOnionPathsWorker() {
 
       // make sure to not reuse multiple times the same subnet /24
       const allNodesGroupedBySubnet24 = _.groupBy(allNodes, e => {
-        const lastDot = e.ip.lastIndexOf('.');
-        return e.ip.substr(0, lastDot);
+        // const lastDot = e.ip.lastIndexOf('.');
+        return e.ip;
       });
       const oneNodeForEachSubnet24KeepingRatio = _.flatten(
         _.map(allNodesGroupedBySubnet24, group => {
